@@ -1,0 +1,28 @@
+@import '../../../../styles/variables';
+.MainBanner{
+    width: 690px;
+    height: 640px;
+    background-color: $darkBlueBg;
+    border-radius: 10px;
+    margin: 30px;
+    position: relative;
+    img{
+        position:absolute;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+    }
+    h2{
+        position: absolute;
+        top: 32px;
+        left: 31px;
+        width: 291px;
+        font-weight: 900;
+        font-size: 36px;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        background-image: $goldGradientCl;
+        z-index: 2;
+    }
+}

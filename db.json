@@ -1,0 +1,82 @@
+{
+  "Phones":
+    {
+      "apple":[{
+        "id":1,
+        "model":"iPhone 13 Pro",
+        "color":[{"color":"альпийский зеленый","img":[]},
+        {"color":"графитовый","img":[]},
+        {"color":"золотой","img":[]},
+        {"color":"небесно-голубой","img":[]},
+        {"color":"небесно-голубой","img":[]}
+      ],
+        "article":123123,
+        "Isnew":true,
+        "equipment":["Кабель USB-C/Lightning","Документация"],
+      
+        "display":{
+          "typeDisplay":"Super Retina XDR (OLED)",
+          "screen":"6.1",
+          "screenSizePixels":"2532x1170",
+          "PPI":460,
+          "colors":"16 млн",
+          "sensorDisplay":"+",
+          "multiTouch":"+",
+          "screenProtect":"Ceramic Shield",
+          "displayFeatures":"дисплей с расширенным цветовым охватом (P3), дисплей HDR, дисплей True Tone, 120 Гц",
+          "oleophobicCoating":"+"
+        },
+
+        "cpu":{
+          "cpuPhone":"Apple A15 Bionic",
+          "description":"64-битная архитектура"
+        },
+
+        "camera":{
+        "cameraPhone":"12 + 12 + 12 + сканер LiDAR",
+        "opticalZoom":"x6",
+        "stabilizationImg":"оптическая",
+        "autoFocus":"гибридный",
+        "light":"True Tone",
+        "record":"+",
+        "recordQuality":"3840 x 2160",
+        "recordFps":60,
+        "videoStabilization":"+",
+        "frontCamera":12
+        },
+
+        "memory":{
+          "memory":[128,256,512,1024],
+          "ram":6
+        },
+
+        "system":{
+          "os":"ios",
+          "navigation":"GPS, ГЛОНАСС, A-GPS, GALILEO, функция точного определения местоположения iBeacon, QZSS"
+        },
+
+        "simCard":{
+          "typeSimCard":"nano-SIM",
+          "eSim":"+",
+          "numSim":1
+        },
+
+        "case":{
+          "typeOfCase":"классический",
+          "height":146.7,
+          "width":71.5,
+          "depth":7.65,
+          "weight":203,
+          "caseMaterial":"нерж. сталь, стекло",
+          "waterProtection":"+",
+          "typeOfWaterProtection":"IP68"
+        },
+
+        "other":{
+          "guarantee":"1 год",
+          "manufacturer":"Apple",
+          "factory":"Китай"
+        }
+      }]
+    }
+}

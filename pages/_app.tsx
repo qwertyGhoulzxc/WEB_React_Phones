@@ -1,6 +1,40 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+import { store } from "@/app/redux/store";
+import { AppProps } from "next/app";
+import { Provider } from "react-redux";
+import '../styles/globals.scss'
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+function MyApp({Component,pageProps}:AppProps){
+
+    return (
+        <Provider store={store}>
+            <Component {...pageProps}></Component>
+        </Provider>
+    )
+
 }
+
+export default MyApp
+
+
+//registration
+
+    // const [RegistrateUser,{isError,isLoading,data,error}] = useRegUserMutation()
+
+    // const handleClick = async(e:React.MouseEvent<HTMLButtonElement>)=>{
+    //     await RegistrateUser({
+    //         email:"pos2.ebasha@gmail.com",
+    //         password:'djksldh231',
+    //         phonenumber:31211231231231,
+    //     })
+    // }
+    
+//login
+
+// const [LoginUser,{isError,isLoading,data,error}] = useLoginUserMutation()
+
+// const handleClick = async(e:React.MouseEvent<HTMLButtonElement>)=>{
+//         await LoginUser({
+//             email:"pos2.ebasha@gmail.com",
+//             password:'djksldh231',
+//         })
+//     }

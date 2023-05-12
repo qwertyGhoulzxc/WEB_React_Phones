@@ -1,0 +1,25 @@
+@import '../../../styles/variables';
+
+.form{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    height: 500px;
+    border: 1px solid black;
+    h2{
+        color: $darkBlueBg;
+    }
+
+    input{
+        outline: none;
+        width: 250px;
+        height: 47px;
+        font-size: 20px;
+        border-radius: 10px;
+        border: $darkBlueBg 2px solid;
+        margin-bottom: 10px;
+    }
+
+}
