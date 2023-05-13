@@ -34,7 +34,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "app/components/Registation"  ],
+, "app/components/Registation", "app/components/Registration/inputs/EmailInput,tsx"  ],
   "exclude": [
     "node_modules"
   ]
