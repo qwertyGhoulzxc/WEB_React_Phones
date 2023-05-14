@@ -9,7 +9,7 @@ const Banners: FC = () => {
     <h2>Большой выбор техники Apple в Минске</h2>
     <Image  src={IphoneMain} alt='' width={486} height={550}/>
   </div>
-
+  
   
   
   </>

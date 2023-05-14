@@ -6,7 +6,7 @@ import {BtnStateReducer} from './reducers/Buttons.state'
 const rootReducer = combineReducers({
     [dataApi.reducerPath]:dataApi.reducer,
     BtnStateReducer,
-    
+
 })
 
 export const store= configureStore({
