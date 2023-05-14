@@ -20,3 +20,5 @@ export type PhoneInputByProps = {
     title:string;
     IFormState:FormState;
   }
+
+  export type TChooseLogin = 'PhoneNumber' | 'Email'

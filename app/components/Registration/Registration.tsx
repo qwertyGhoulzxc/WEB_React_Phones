@@ -4,7 +4,7 @@ import Form from './form/Form'
 
 const Registration: FC = () => {
   return <Layout title='registration' description='регистрируйтесь на сайте Life:) для поукупо гаджетов по низким ценам'>
-    <Form title='Регистрация' IFormState='registration'/>
+    <Form title='Регистрация' IFormState='login'/>
 
     </Layout>
 }
