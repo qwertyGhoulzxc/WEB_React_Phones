@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { IData, Payload } from './types/data.interface';
-
+import { useActions } from "@/app/hooks/useActions";
 
 
 
@@ -30,6 +30,7 @@ export const dataApi = createApi({
             localStorage.setItem('token',accessToken);
             return response
             },
+            
           }), 
 
           LoginUser: build.mutation<IData, Payload>({

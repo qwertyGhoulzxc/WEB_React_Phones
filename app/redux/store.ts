@@ -2,11 +2,12 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { dataApi } from "./reducers/dataApi.redux";
 import {BtnStateReducer} from './reducers/Buttons.state'
+import { IsAuthReducer } from "./reducers/isAuth.slice";
 
 const rootReducer = combineReducers({
     [dataApi.reducerPath]:dataApi.reducer,
     BtnStateReducer,
-
+    IsAuthReducer,
 })
 
 export const store= configureStore({

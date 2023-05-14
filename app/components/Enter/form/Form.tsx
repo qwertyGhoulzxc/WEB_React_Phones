@@ -4,20 +4,59 @@ import {IFormProps, IFormFields,IInputType, TChooseLogin} from './form.interface
 import styles from './From.module.scss'
 import PhoneInputField from './inputs/PhoneInputBy'
 import Link from 'next/link'
+import { useRegUserMutation, useLoginUserMutation } from '@/app/redux/reducers/dataApi.redux'
+import { useActions } from '@/app/hooks/useActions'
 
 const Form: FC<IFormProps> = ({IFormState,title}) => {
+
+const {setAuthorized} = useActions()
 
 const {register,handleSubmit, formState:{errors},reset,control,getValues} = useForm<IFormFields>({mode:'onChange'})
 
 const [inputTypePassword,setInputTypePassword] = useState<IInputType>('password')
 
+const [chooseLogin,setChooseLogin] = useState<TChooseLogin>('PhoneNumber')
 
-// пропсы h2 и .. + styles
 
+//registration
 
-const onSubmit:SubmitHandler<IFormFields> = (data)=>{
+    const [RegistrateUser,{isError:RegIsError,isLoading:RegIsUser,error:RegError,data:RegData}] = useRegUserMutation()
+    const [LoginUser,{isError:LoginIsError,isLoading:LoginLoading,error:LoginError,data:LoginData}] = useLoginUserMutation()
+
+    // const handleClick = async(e:React.MouseEvent<HTMLButtonElement>)=>{
+    //   
+    // }
+
+const onSubmit:SubmitHandler<IFormFields> = async(data)=>{
 console.log(data);
-reset({
+if(IFormState==='registration'){
+await RegistrateUser({
+            email:data.email,
+            password:data.password,
+            phonenumber:String(data.number),
+        })
+        setAuthorized(!RegIsError)
+    }
+else if(IFormState==='login'){
+    if(chooseLogin==='Email'){
+    await LoginUser({
+            email:data.email,
+            password:data.password,
+            })
+        }
+       else if(chooseLogin==='PhoneNumber'){
+            await LoginUser({
+                    phonenumber:data.number,
+                    password:data.password,
+                    })
+                }
+                setAuthorized(!LoginIsError)
+}
+
+
+
+    
+(!RegIsError || !LoginIsError)&&reset({
     email:'',
     number:'375',
     password:'',
@@ -28,6 +67,13 @@ reset({
 const handleShowPassword = ()=>{
     inputTypePassword==='password'?setInputTypePassword('text'):setInputTypePassword('password')
 }
+
+// const handleClick = async(e:React.MouseEvent<HTMLButtonElement>)=>{
+//         await LoginUser({
+//             email:"pos2.ebasha@gmail.com",
+//             password:'djksldh231',
+//         })
+//     }
 
 
 if(IFormState==='registration'){
@@ -103,7 +149,6 @@ if(IFormState==='registration'){
     )
 }
 
-const [chooseLogin,setChooseLogin] = useState<TChooseLogin>('PhoneNumber')
   return (
 
         <div className={styles.content}>

@@ -14,5 +14,5 @@ interface IUser {
 export interface Payload {
   password:string;
   email?: string;
-  phonenumber?:number;
+  phonenumber?:string;
 }
