@@ -14,6 +14,13 @@
     padding: 13px;
     margin-top: 50px;
 
+    .links{
+        margin: auto;
+        width: 300px;
+        a{
+            color: $lightBlueCl;
+        }
+    }
 
     h2{
         color: $darkBlueBg;
@@ -39,6 +46,9 @@
         border:none;
         border-radius: 10px;
         margin-bottom:10px ;
+        &:hover{
+            cursor: pointer;
+        }
     }
     .PasswordInput{
         position: relative;
@@ -47,6 +57,9 @@
             position: absolute;
             right: 10px;
             top: 10px;
+            &:hover{
+                cursor: pointer;
+            }
         }
     }
     .Error{
@@ -58,18 +71,11 @@
     .btnChooseWay{
         background-color: transparent;
         color: black;
-        position: relative;
-        // border-bottom: 2px solid black;
-        // border-bottom-left-radius: 0;
-        // border-bottom-right-radius: 0;
-        &::after{
-            content: '';
-            width: 100px;
-            border: 3px solid black;
-            position:absolute;
-            left: 0;
-            bottom: 0;
-        }
+        font-size: 20px;
+        border-bottom-width: 5px;
+        border-bottom-style: solid;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
     }
   
  
@@ -84,5 +90,6 @@
       
 }
 .ChooseWay{
-    display: flex;
+    width: 400px;
+    height: 70px;
 }
