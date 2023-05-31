@@ -15,10 +15,10 @@ export type PhoneInputByProps = {
     control: Control<IFormFields>;
   } & PhoneInputProps;
 
-  type FormState = 'login' | 'registration'
+ export type FormState = 'login' | 'registration' | 'ChangePassByLink' | 'ChangePassWithParams'
   export interface IFormProps{
     title:string;
     IFormState:FormState;
   }
 
-  export type TChooseLogin = 'PhoneNumber' | 'Email'
+  export type TypeChooseLogin = 'PhoneNumber' | 'Email'

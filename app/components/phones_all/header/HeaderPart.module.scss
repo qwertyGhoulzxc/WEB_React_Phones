@@ -1,0 +1,15 @@
+@import '../../../../styles//variables';
+
+.model{
+    display: inline-block;
+    border: 1px solid $darkBlueBg;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 400;
+    height: 50px;
+    line-height: 25px;
+    p{
+       
+        margin: 13px 22px;
+    }
+}

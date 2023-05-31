@@ -6,6 +6,9 @@ import Meta from '../seo/Meta'
 import { IMeta } from '../seo/Meta.interface'
 
 const Layout: FC<PropsWithChildren<IMeta>> = ({children,title,description}) => {
+
+
+
   return (
     <Meta title={title} description={description}>
     <div className={styles.page}>
@@ -18,5 +21,8 @@ const Layout: FC<PropsWithChildren<IMeta>> = ({children,title,description}) => {
     </Meta>
   )
 }
+
+
+
 
 export default Layout

@@ -1,16 +1,18 @@
 import { useActions } from '@/app/hooks/useActions'
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import Layout from '../Layout/Layout'
+import { NextPage } from 'next';
 
 
-const Catalog: FC = () => {
-const {setCatalogBtnState} = useActions()
-    setCatalogBtnState(true)
 
+
+
+const Catalog:FC = () => {
   return <Layout title="Catalog" description='Каталог техники по низким ценам, в рассрочку'>
     Catalog
     
     </Layout>
 }
+
 
 export default Catalog

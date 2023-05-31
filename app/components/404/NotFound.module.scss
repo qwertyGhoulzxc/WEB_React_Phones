@@ -16,6 +16,11 @@
         margin-bottom: 15px;
         font-size: 20px;
     }
+    a{
+        &::hover{
+            cursor: pointer;
+        }
+    }
     button{
         background-color: $lightBlueCl;
         border: none;

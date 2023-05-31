@@ -1,20 +1,25 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { Middleware, combineReducers, configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { dataApi } from "./reducers/dataApi.redux";
-import {BtnStateReducer} from './reducers/Buttons.state'
-import { IsAuthReducer } from "./reducers/isAuth.slice";
+import {BtnStateReducer} from './reducers/Buttons.state';
+import {LoadingReducer} from './reducers/Loading.slice'
+import {UserInfoReducer} from './reducers/user.slice'
+
+// const removeMutationResultFilter: Middleware<any> = (store) => (next) => (action) => {
+//     if (action.type === 'api/users/mutations/removeMutationResult') {
+//       return;
+//     }
+//     return next(action);
+//   };
 
 const rootReducer = combineReducers({
-    [dataApi.reducerPath]:dataApi.reducer,
     BtnStateReducer,
-    IsAuthReducer,
+    LoadingReducer,
+    UserInfoReducer
 })
 
 export const store= configureStore({
         reducer:rootReducer ,
-        middleware:getDefaultMiddleware =>
-        getDefaultMiddleware().concat(dataApi.middleware)
-    })
+     })
 
     setupListeners(store.dispatch)
 
