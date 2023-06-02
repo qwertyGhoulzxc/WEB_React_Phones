@@ -1,10 +1,12 @@
 import { bindActionCreators } from "@reduxjs/toolkit"
 import { useDispatch } from "react-redux"
 import {BtnStateActions} from '../redux/reducers/Buttons.state'
-import { IsAuthActions } from "../redux/reducers/isAuth.slice"
+import {LoadingActions} from '../redux/reducers/Loading.slice'
+import {UserInfoActions} from '../redux/reducers/user.slice'
 const allActions = {
     ...BtnStateActions,
-    ...IsAuthActions,
+    ...LoadingActions,
+    ...UserInfoActions
 }
 
 export const useActions =()=>{

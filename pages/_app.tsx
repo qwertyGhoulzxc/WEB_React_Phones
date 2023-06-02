@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import '../styles/globals.scss'
 
 function MyApp({Component,pageProps}:AppProps){
-
+    
     return (
         <Provider store={store}>
             <Component {...pageProps}></Component>

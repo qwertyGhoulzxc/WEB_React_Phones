@@ -16,3 +16,17 @@ export interface Payload {
   email?: string;
   phonenumber?:string;
 }
+
+export interface IChangePassLink{
+  email?:string;
+  phonenumber?:string;
+}
+
+export interface INewPass{
+  newPass:string;
+  changePassword:string
+}
+
+export interface IChangePassMessage{
+  message:string
+}

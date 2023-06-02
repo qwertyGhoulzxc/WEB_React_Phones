@@ -3,7 +3,11 @@
 
 .headerCl{
 background-color: $darkBlueBg;
-
+a{
+    &::hover{
+        cursor: pointer;
+    }
+}
 }
 
 .firstLine{
