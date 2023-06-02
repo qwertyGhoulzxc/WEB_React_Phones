@@ -4,7 +4,7 @@
     height: 640px;
     background-color: $darkBlueBg;
     border-radius: 10px;
-    margin: 30px;
+    margin: 27px 24px 27px 0;
     position: relative;
     img{
         position:absolute;
@@ -24,5 +24,178 @@
         color: transparent;
         background-image: $goldGradientCl;
         z-index: 2;
+        
     }
+}
+.Banners{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    bottom: 667px;
+    left: 716px;
+}
+.FirstBanner{
+    width: 486px;
+    height: 198px;
+    background-color:#FFD439;
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: 24px;
+    h2{
+        position: absolute;
+        width: 232px;
+        left: 30px;
+        top: 54px;
+        color: #011F7F;
+        font-weight: 900;
+        font-size: 25px;
+        line-height: 30px;
+    }
+}
+.SecondBanner{
+    width: 486px;
+    height: 198px;
+    background-color:#011F7F;
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: 22px;
+    h2{
+        position: absolute;
+        width: 271px;
+        left: 32px;
+        top: 69px;
+        color: #fff;
+        font-weight: 900;
+        font-size: 25px;
+        line-height: 30px;
+    }
+}
+.ThirdBanner{
+    width: 486px;
+    height: 198px;
+    background-color:#FFD439;
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: 24px;
+    h2{
+        position: absolute;
+        width: 219px;
+        left: 30px;
+        top: 54px;
+        color: #011F7F;
+        font-weight: 900;
+        font-size: 25px;
+        line-height: 30px;
+    }
+    img{
+        position:absolute;
+        right: 20px;
+        top: 21px;
+    }
+}
+
+.GalaxyFirst{
+    position:absolute;
+    right: 59px;
+    top: -15px;
+}
+
+.IphoneFirst{
+    position:absolute;
+    right: 38px;
+    top: 21px;
+}
+
+.PhoneFirst{
+    position:absolute;
+    left: 315px;
+    bottom: -15px;
+}
+
+.Headphone{
+    position:absolute;
+    right: 68px;
+    bottom: 15px;
+    z-index: 2;
+}
+
+.IphoneSecond{
+    position:absolute;
+    right: 1px;
+    top: 13px;
+}
+
+.Logos{
+    display: flex;
+    margin-top: 27px;
+    position: relative;
+    bottom: 691px;
+    right: 393px;
+}
+
+.Apple{
+    position: relative;
+    width: 180px;
+    height: 90px;
+    border: 1px solid #0000001A;
+    border-radius: 10px;
+    margin-right: 24px;
+    left: 50%;
+    img{
+        position: absolute;
+        top: 13px;
+        left: 60px;
+    }
+}
+
+.Samsung{
+    position: relative;
+    width: 180px;
+    height: 90px;
+    border: 1px solid #0000001A;
+    border-radius: 10px;
+    margin-right: 24px;
+    left: 50%;
+    img{
+        position: absolute;
+        top: 35px;
+        left: 31px;
+    }
+}
+
+.Xiaomi{
+    position: relative;
+    width: 180px;
+    height: 90px;
+    border: 1px solid #0000001A;
+    border-radius: 10px;
+    margin-right: 24px;
+    left: 50%;
+    img{
+        position: absolute;
+        top: 11px;
+        left: 56px;
+    }
+}
+
+.Huawei{
+    position: relative;
+    width: 180px;
+    height: 90px;
+    border: 1px solid #0000001A;
+    border-radius: 10px;
+    margin-right: 24px;
+    left: 50%;
+}
+
+.HuaweiText1{
+    position: relative;
+    top: 61px;
+    left: 55px;
+}
+
+.HuaweiLogo{
+    position: relative;
+    bottom: 9px;
+    left: 60px;
 }
