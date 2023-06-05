@@ -3,11 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"next dev\" \"npm run database\"",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "database": "json-server --w db.json -p 4200"
+    "lint": "next lint"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
@@ -37,3 +36,4 @@
     "@types/js-cookie": "^3.0.3"
   }
 }
+
