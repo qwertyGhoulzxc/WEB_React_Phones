@@ -8,11 +8,11 @@
         "discountPrice":"4 255 BYN"
         },
         "model":"iPhone 13 Pro",
-        "color":[{"color":"альпийский зеленый","img":[]},
-        {"color":"графитовый","img":[]},
-        {"color":"золотой","img":[]},
-        {"color":"небесно-голубой","img":[]},
-        {"color":"небесно-голубой","img":[]}
+        "color":[
+        {"colorEn":"green","colorRu":"альпийский зеленый","img":[]},
+        {"colorEn":"gray","colorRu":"графитовый","img":[]},
+        {"colorEn":"gold","colorRu":"золотой","img":[]},
+        {"colorEn":"blue","colorRu":"небесно-голубой","img":[]}
       ],
         "article":123123,
         "Isnew":true,

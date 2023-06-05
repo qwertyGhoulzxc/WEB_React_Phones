@@ -1,6 +1,7 @@
 import {PayloadAction, createSlice} from "@reduxjs/toolkit";
 import {UserSliceInterface} from "./types/UserSlice.interface";
 import { IError, IUser } from "@/app/sevices/types.authService/IUser";
+import {HYDRATE} from "next-redux-wrapper";
 const initialState:UserSliceInterface = {
     user:{
         email:'',
@@ -45,7 +46,7 @@ const userInfo = createSlice({
     name:'userParams',
 initialState,
     reducers:{
-        setUserData:(state, action:PayloadAction<IUser>)=>{state.user = action.payload},
+        setUserData:(state, action:PayloadAction<any>)=>{state.user = action.payload},
         setAuth:(state, action:PayloadAction<boolean>)=>{state.isAuth=action.payload},
         setErrorStatusLogin:(state, action:PayloadAction<IError>)=>{state.LoginError.status=action.payload.status;state.LoginError.message=action.payload.message},
         setErrorStatusRegistr:(state, action:PayloadAction<IError>)=>{state.RegistrError.status=action.payload.status;state.RegistrError.message=action.payload.message},
@@ -53,6 +54,14 @@ initialState,
         setErrorStatusSendLink:(state, action:PayloadAction<IError>)=>{state.SendLinkError.status=action.payload.status;state.SendLinkError.message=action.payload.message}, 
         setErrorStatusChangeName:(state, action)=>{state.ChangeName.status=action.payload.status;state.ChangeName.message=action.payload.message},
         setChangeProfileAvatar:(state, action:PayloadAction<boolean>)=>{state.ChangeProfile.img = action.payload},
+    },
+    extraReducers:{
+        [HYDRATE]:(state, action)=>{
+            return{
+                ...state,
+                ...action.payload.UserInfoReducer
+            }
+        }
     }
 })
 

@@ -1,8 +1,27 @@
 import HomePage from "@/app/components/HomePage/HomePage";
-export default function Index(){
+import {wrapper} from "@/app/redux/store";
+import {GetServerSideProps} from "next";
 
-    return(
-    
+import {getMe} from "@/app/redux/reducers/requests";
+
+export default function Index() {
+
+    return (
+
         <HomePage/>
     )
 }
+
+export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(store => async (ctx) => {
+    try {
+        await getMe(ctx, store)
+        return {
+            props: {}
+        }
+    } catch (e) {
+        console.log(e)
+        return {
+            props: {}
+        }
+    }
+})
