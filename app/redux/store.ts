@@ -10,6 +10,7 @@ import { BtnStateReducer } from "./reducers/Buttons.state";
 import { LoadingReducer } from "./reducers/Loading.slice";
 import { UserInfoReducer } from "./reducers/user.slice";
 import { createWrapper } from "next-redux-wrapper";
+import { phonesDataReducer } from "./reducers/phones.slice";
 
 // const removeMutationResultFilter: Middleware<any> = (store) => (next) => (action) => {
 //     if (action.type === 'api/users/mutations/removeMutationResult') {
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   BtnStateReducer,
   LoadingReducer,
   UserInfoReducer,
+  phonesDataReducer,
 });
 
 export function setupStore() {

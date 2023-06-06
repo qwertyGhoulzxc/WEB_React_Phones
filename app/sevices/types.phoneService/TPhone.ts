@@ -24,6 +24,7 @@ export interface TPhone {
 
   export interface TShortPhone {
     id: number
+    company:string
     price: Price
     color: Color
     memory: Memory
