@@ -1,19 +1,19 @@
-import { store } from "@/app/redux/store";
+import { store, wrapper } from "@/app/redux/store";
 import { AppProps } from "next/app";
 import { Provider } from "react-redux";
 import '../styles/globals.scss'
 
-function MyApp({Component,pageProps}:AppProps){
+function App({Component,pageProps}:AppProps){
     
     return (
-        <Provider store={store}>
+        // <Provider store={store}>
             <Component {...pageProps}></Component>
-        </Provider>
+        // </Provider>
     )
 
 }
 
-export default MyApp
+export default wrapper.withRedux(App)
 
 
 //registration

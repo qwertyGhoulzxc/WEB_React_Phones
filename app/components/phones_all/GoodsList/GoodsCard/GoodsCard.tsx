@@ -1,20 +1,27 @@
 import { FC, PropsWithChildren } from 'react'
 import styles from './GoodsCard.module.scss'
 import {BsArrowRightCircle} from 'react-icons/bs'
+import { TShortPhone } from '@/app/sevices/types.phoneService/TPhone'
 
-const GoodsCard: FC<PropsWithChildren<unknown>> = () => {
+interface Props{
+  phone:TShortPhone
+}
+
+const GoodsCard: FC<Props> = ({phone}) => {
+
   return <div className={styles.card}>
-
+    
     <div>
-    <img src="https://content2.onliner.by/catalog/device/header/c66db6b4c5cce1915eadd8bb59f5c527.jpeg" alt="" />
+    <img src={phone.color.img[0]} alt="" />
     </div>
     <div className={styles.text}>
-    <h2>iPhone 13</h2>
-    <p>Space Gray / 256 GB</p>
+    <h2>{phone.company} {phone.model}</h2>
+    <p>{phone.color.colorEn} / {phone.memory.memory} GB</p>
     <div className={styles.la}>
         <div className={styles.priceProperty}>
-    <h2 className={styles.price}>2 350 BYN</h2>
-    <h2 className={styles.discountPrice}>2 350 BYN</h2>
+    <h2 className={styles.price}>{phone.price.price.toLocaleString('ru-RU')} BYN</h2>
+    {phone.price.discountPrice&&<h2 className={styles.discountPrice}>{phone.price.discountPrice.toLocaleString('ru-RU')} BYN</h2>}
+    
     </div>
     <BsArrowRightCircle className={styles.icon}/>
     </div>

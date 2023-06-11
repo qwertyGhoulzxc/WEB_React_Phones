@@ -7,6 +7,8 @@ export interface AuthResponse{
 
 }
 export interface ReloadData{
+    accessToken:string;
+    refreshToken:string;
     user:IUser
 }
 

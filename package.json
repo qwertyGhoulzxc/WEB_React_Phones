@@ -3,11 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"next dev\" \"npm run database\"",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "database": "json-server --w db.json -p 4200"
+    "lint": "next lint"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
@@ -22,6 +21,8 @@
     "js-cookie": "^3.0.5",
     "json-server": "^0.17.3",
     "next": "13.4.1",
+    "next-redux-wrapper": "^8.1.0",
+    "nookies": "^2.5.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.9",
@@ -35,3 +36,4 @@
     "@types/js-cookie": "^3.0.3"
   }
 }
+
