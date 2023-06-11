@@ -1,22 +1,28 @@
 import { FC, useState } from 'react'
 import styles from '../FilterWindow.module.scss'
+import { useActions } from '@/app/hooks/useActions'
+import { useAppSelector } from '@/app/hooks/redux'
 interface Props{
     colorEn:string,
     colorRu:string,
-    remove:(extra:string)=>void
+    // remove:(extra:string)=>void
 }
 
 
 
 
-const CheckBoxInputColors: FC<Props> = ({colorEn,colorRu,remove}) => {
+const CheckBoxInputColors: FC<Props> = ({colorEn,colorRu}) => {
     const [checked,setChecked] = useState<boolean>(false)
     const [inputValue,setInputValue] = useState<string>(colorEn)
-
+    const {checkedColors} = useAppSelector(state=>state.BtnStateReducer)
+    const {setCheckedColors} = useActions()
 const handleChange =(e:React.ChangeEvent<HTMLInputElement>)=>{
     setChecked(prev=>!prev)
-    checked?setInputValue(colorEn):setInputValue('')
-    checked&&remove(colorEn)
+    !checked?setCheckedColors([...checkedColors,colorEn]):setInputValue('')
+    if(checked){
+    const removedColors = checkedColors.filter(i=>i!==colorEn)
+    setCheckedColors([...removedColors])
+    }
 
 }
   return <div className={styles.CheckedInput}>

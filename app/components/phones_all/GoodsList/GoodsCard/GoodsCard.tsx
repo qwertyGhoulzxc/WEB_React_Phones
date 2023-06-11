@@ -19,8 +19,8 @@ const GoodsCard: FC<Props> = ({phone}) => {
     <p>{phone.color.colorEn} / {phone.memory.memory} GB</p>
     <div className={styles.la}>
         <div className={styles.priceProperty}>
-    <h2 className={styles.price}>{phone.price.price} BYN</h2>
-    {phone.price.discountPrice&&<h2 className={styles.discountPrice}>{phone.price.discountPrice} BYN</h2>}
+    <h2 className={styles.price}>{phone.price.price.toLocaleString('ru-RU')} BYN</h2>
+    {phone.price.discountPrice&&<h2 className={styles.discountPrice}>{phone.price.discountPrice.toLocaleString('ru-RU')} BYN</h2>}
     
     </div>
     <BsArrowRightCircle className={styles.icon}/>
@@ -28,7 +28,5 @@ const GoodsCard: FC<Props> = ({phone}) => {
     </div>
   </div>
 }
-//подправить цены с пробелами
 
-//создать на бэке unique model телефонов чтобы передать в header component
 export default GoodsCard

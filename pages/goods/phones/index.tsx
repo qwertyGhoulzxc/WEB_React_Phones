@@ -1,6 +1,6 @@
 import PhonesCatalog from "@/app/components/phones_all/PhonesCatalog";
 import {GetServerSideProps,NextPage} from "next";
-import { phoneService } from "../../app/sevices/PhoneService";
+import { phoneService } from "../../../app/sevices/PhoneService";
 import { wrapper } from "@/app/redux/store";
 import { phonesDataActions } from "@/app/redux/reducers/phones.slice";
 

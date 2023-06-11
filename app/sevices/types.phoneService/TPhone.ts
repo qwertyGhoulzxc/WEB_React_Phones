@@ -29,22 +29,22 @@ export interface TPhone {
     color: Color
     memory: Memory
     _id: string
-    model: string
+    model: string,
   }
 
   
-  interface Price {
+  export interface Price {
     price: number
     discountPrice?: number
   }
   
-  interface Color {
+  export interface Color {
     colorEn: string
     colorRu: string
     img: string[]
   }
   
-interface Display {
+export interface Display {
     typeDisplay: string
     screen: string
     screenSizePixels: string
@@ -57,12 +57,12 @@ interface Display {
     oleophobicCoating: string
   }
   
-interface Cpu {
+export interface Cpu {
     cpuPhone: string
     description: string
   }
   
-interface Camera {
+export interface Camera {
     cameraPhone: string
     opticalZoom: string
     stabilizationImg: string
@@ -75,24 +75,24 @@ interface Camera {
     frontCamera: string
   }
   
-interface Memory {
+export interface Memory {
     memory: string[]
     possibleMemory: string[]
     ram: string
   }
   
-interface System {
+export interface System {
     os: string
     navigation: string
   }
   
-interface SimCard {
+export interface SimCard {
     typeSimCard: string
     eSim: string
     numSim: number
   }
   
-interface CasE {
+export interface CasE {
     typeOfCase: string
     height: number
     width: number
@@ -103,8 +103,9 @@ interface CasE {
     typeOfWaterProtection: string
   }
   
-interface Other {
+export interface Other {
     guarantee: string
     manufacturer: string
     factory: string
+    [propsName:string]:any
   }

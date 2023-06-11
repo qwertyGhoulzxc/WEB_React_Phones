@@ -3,24 +3,19 @@ import styles from "./FilterWindow.module.scss";
 import CheckBoxInputColors from "./inputs/CheckBoxInputColors";
 import CheckBoxInputMemory from "./inputs/CheckBoxInputMemory";
 import PriceInput from "./inputs/PriceInput";
+import { useAppSelector } from "@/app/hooks/redux";
+import { phoneService } from "@/app/sevices/PhoneService";
+import { useActions } from "@/app/hooks/useActions";
 
 const FilterWindow: FC = () => {
-  const colorArr = [
-    { colorEn: "white", colorRu: "белый" },
-    { colorEn: "black", colorRu: "черный" },
-    { colorEn: "gold", colorRu: "золотой" },
-    { colorEn: "gray", colorRu: "серый" },
-    { colorEn: "violet", colorRu: "фиолетовый" },
-    { colorEn: "yellow", colorRu: "желтый" },
-    { colorEn: "blue", colorRu: "синий" },
-    { colorEn: "pink", colorRu: "розовый" },
-  ];
 
-  const memoryArr = ["1024", "512", "256", "128", "64"];
+const {maxPrice,minPrice,uniqueMemory,uniqueColorsObj} = useAppSelector(state=>state.phonesDataReducer)
+const {checkedColors,checkedMemory} = useAppSelector(state=>state.BtnStateReducer)
+const {setCheckedColors,setCheckedMemory,setData} = useActions()
 
   const priceObj = {
-    minPrice: 1800,
-    maxPrice: 3900,
+    minPrice: minPrice,
+    maxPrice: maxPrice,
   };
 
   const [colors, setColors] = useState<string[]>([]);
@@ -28,21 +23,6 @@ const FilterWindow: FC = () => {
   const [lPrice, setLPrice] = useState<number>(0);
   const [hPrice, setHPrice] = useState<number>(priceObj.maxPrice || 99999);
 
-  const handleCheckedColors = (): void => {
-    const nodeList: NodeListOf<HTMLElement> =
-      document.getElementsByName("sortColors");
-    const values: NodeListOf<HTMLInputElement> =
-      nodeList as NodeListOf<HTMLInputElement>;
-    for (let i = 0; i < values.length; i++) {
-      if (values[i].checked && !colors.includes(values[i].id))
-        setColors((prev) => [...prev, values[i].id]);
-    }
-    console.log(colors);
-  };
-  const handleRemoveCheckedColor = (extra: string): void => {
-    const sortedArr = colors.filter((i) => i !== extra);
-    setColors(sortedArr);
-  };
   const handleCheckedMemory = (): void => {
     const nodeList: NodeListOf<HTMLElement> =
       document.getElementsByName("sortMemory");
@@ -52,17 +32,41 @@ const FilterWindow: FC = () => {
       if (values[i].checked && !memory.includes(values[i].id))
         setMemory((prev) => [...prev, values[i].id]);
     }
-    console.log(memory);
+    // console.log(memory);
   };
   const handleRemoveCheckedMemory = (extra: string): void => {
     const sortedArr = memory.filter((i) => i !== extra);
     setMemory(sortedArr);
   };
 
-  const handleSubmit = () => {
-    handleCheckedMemory();
-    handleCheckedColors();
+  const GetParamsLink = () => {
+    const defaultColorsResponse = uniqueColorsObj.map(i=>i.colorEn)
+    const defaultMemoryResponse = uniqueMemory.toString()
+    // handleCheckedColors();
+    console.log(colors.length);
+    
+    if(checkedColors.length===0){
+      setCheckedColors(defaultColorsResponse)
+    }
+    
+    if(checkedMemory.length===0){
+      setCheckedMemory(defaultMemoryResponse.split(','))
+    }
+    // console.log(checkedColors);
+    // console.log(checkedMemory);
+    //убрать хардкод цен
+    return [checkedColors.join(','),checkedMemory.join(','),lPrice,hPrice]
+//удалять весь редакс после запроса
+    // handleCheckedMemory(
+    //   // phoneService.getSortedPhones()
+    // );
+    
   };
+  const handleTest=async()=>{
+    const params:any =GetParamsLink()
+    const data = await phoneService.getSortedPhones(params[0],params[1],params[2],params[3])
+    setData(data)
+  }
 
   return (
     <div className={styles.container}>
@@ -76,22 +80,21 @@ const FilterWindow: FC = () => {
       />
       <h2 style={{ marginTop: "37px" }}>Память</h2>
       <div className={styles.inputBlock}>
-        {memoryArr.map((i, ii) => {
+        {uniqueMemory?.map((i, ii) => {
           return (
             <CheckBoxInputMemory
               key={ii}
               memory={i}
-              remove={handleRemoveCheckedMemory}
             />
           );
         })}
       </div>
       <h2 style={{ marginTop: "43px" }}>Цвет корпуса</h2>
       <div className={styles.inputBlock}>
-        {colorArr.map((i, ii) => {
+        {uniqueColorsObj.map((i, ii) => {
           return (
             <CheckBoxInputColors
-              remove={handleRemoveCheckedColor}
+              // remove={handleRemoveCheckedColor}
               key={ii}
               colorEn={i.colorEn}
               colorRu={i.colorRu}
@@ -100,10 +103,10 @@ const FilterWindow: FC = () => {
         })}
       </div>
 
-      <button style={{ margin: "25px 0 13px 0" }} onClick={handleSubmit}>
+      <button style={{ margin: "25px 0 13px 0" }} onClick={handleTest}>
         ПРИМЕНИТЬ
       </button>
-      <button onClick={handleSubmit}>СБРОСИТЬ ФИЛЬТР</button>
+      <button >СБРОСИТЬ ФИЛЬТР</button>
     </div>
   );
 };

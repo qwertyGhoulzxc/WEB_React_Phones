@@ -8,9 +8,10 @@ const initialState:TPhoneShortResponse={
     maxPrice:0,
     minPrice:0,
     page:1,
-    uniqueColors:[],
+    uniqueColorsObj:[],
     uniqueMemory:[],
     phones:[],
+    uniqueModels:[]
 }
 
 const phonesData = createSlice({
@@ -21,8 +22,6 @@ reducers:{
 },
 extraReducers:{
     [HYDRATE]:(state, action)=>{
-        console.log(action.payload.phonesDataReducer);
-        
         return{
             ...state,
             ...action.payload.phonesDataReducer

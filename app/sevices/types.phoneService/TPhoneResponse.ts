@@ -9,11 +9,17 @@ export interface TPhoneResponse {
 
 export interface TPhoneShortResponse {
   uniqueMemory: string[];
-  uniqueColors: string[];
+  uniqueColorsObj: IUniqueColorsObj[];
   minPrice: number;
   maxPrice: number;
   total: number;
   page: number;
   limit: number;
+  uniqueModels:string[]
   phones: TShortPhone[];
+}
+
+interface IUniqueColorsObj{
+  colorEn:string;
+  colorRu:string;
 }
