@@ -1,105 +1,107 @@
-import { TPhone } from "@/app/sevices/types.phoneService/TPhone"
-import { createSlice } from "@reduxjs/toolkit"
-import { HYDRATE } from "next-redux-wrapper"
+import {TPhone} from "@/app/services/types.phoneService/TPhone"
+import {createSlice} from "@reduxjs/toolkit"
+import {HYDRATE} from "next-redux-wrapper"
 
-interface IOmmit{
-    _id:string
-    
-}
-
-interface IInitialState extends Omit<TPhone,keyof IOmmit>{
+interface IOmmit {
+    _id: string
 
 }
 
-const initialState:IInitialState={
-    id:1,
-    model:'',
-    company:'',
-    article:1,
-    camera:{
-    cameraPhone: '',
-    opticalZoom: '',
-    stabilizationImg: '',
-    autoFocus: '',
-    light: '',
-    record: '',
-    recordQuality: '',
-    recordFps: 1,
-    videoStabilization: '',
-    frontCamera: '',
+interface IInitialState extends Omit<TPhone, keyof IOmmit> {
+
+}
+
+const initialState: IInitialState = {
+    id: 1,
+    model: '',
+    company: '',
+    article: 1,
+    camera: {
+        cameraPhone: '',
+        opticalZoom: '',
+        stabilizationImg: '',
+        autoFocus: '',
+        light: '',
+        record: '',
+        recordQuality: '',
+        recordFps: 1,
+        videoStabilization: '',
+        frontCamera: '',
     },
-    buyedCount:0,
-    casE:{
-            typeOfCase: '',
-            height: 0,
-            width: 0,
-            depth: 0,
-            weight: 0,
-            caseMaterial: '',
-            waterProtection: '',
-            typeOfWaterProtection: '',
+    buyedCount: 0,
+    casE: {
+        typeOfCase: '',
+        height: 0,
+        width: 0,
+        depth: 0,
+        weight: 0,
+        caseMaterial: '',
+        waterProtection: '',
+        typeOfWaterProtection: '',
     },
-    color:{
+    color: {
         colorEn: '',
         colorRu: '',
         img: []
-      },
-      display:{
-    typeDisplay: '',
-    screen: '',
-    screenSizePixels: '',
-    PPI: '',
-    colors: '',
-    sensorDisplay: '',
-    multiTouch: '',
-    screenProtect: '',
-    displayFeatures: '',
-    oleophobicCoating: '',
     },
-    cpu:{
+    display: {
+        typeDisplay: '',
+        screen: '',
+        screenSizePixels: '',
+        PPI: '',
+        colors: '',
+        sensorDisplay: '',
+        multiTouch: '',
+        screenProtect: '',
+        displayFeatures: '',
+        oleophobicCoating: '',
+    },
+    cpu: {
         cpuPhone: '',
-    description: '',
+        description: '',
     },
-    equipment:[],
-    inStock:0,
-    Isnew:true,
-    memory:{
+    equipment: [],
+    inStock: 0,
+    Isnew: true,
+    memory: {
         memory: [],
-    possibleMemory: [],
-    ram: ''
+        possibleMemory: [],
+        ram: ''
     },
-    possibleColors:[],
-    other:{
-        factory:'',
-        guarantee:'',
-        manufacturer:','
+    possibleColors: [],
+    other: {
+        factory: '',
+        guarantee: '',
+        manufacturer: ','
     },
-    price:{
-        price:0,
-        discountPrice:0,
+    price: {
+        price: 0,
+        discountPrice: 0,
     },
-    simCard:{
+    simCard: {
         typeSimCard: '',
-    eSim: '',
-    numSim: 1
+        eSim: '',
+        numSim: 1
     },
-    system:{
-        navigation:'',
-        os:'',
+    system: {
+        navigation: '',
+        os: '',
     },
-    accessories:[]
+    accessories: []
 
 }
 
 const phoneSlice = createSlice({
-    name:'phoneSlice',
+    name: 'phoneSlice',
     initialState,
-    reducers:{
-        setOnePhone:(state,action)=>{return action.payload}
+    reducers: {
+        setOnePhone: (state, action) => {
+            return action.payload
+        }
     },
-    extraReducers:{
-        [HYDRATE]:(state, action)=>{
-            return{
+    extraReducers: {
+        [HYDRATE]: (state, action) => {
+            return {
                 ...state,
                 ...action.payload.phoneSliceReducer
             }
