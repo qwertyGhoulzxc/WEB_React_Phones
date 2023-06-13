@@ -6,6 +6,8 @@ interface Props{
     memory:Memory
 }
 
+
+
 const MemoryInput: FC<Props> = ({memory}) => {
     const [checked,setChecked] = useState<string>(memory.memory[0])
     const handleChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
@@ -13,13 +15,15 @@ const MemoryInput: FC<Props> = ({memory}) => {
         console.log(e.target.value);
         
     }
+    
+    
 
   return <div className={styles.MemoryInputContainer}>
     {
         memory.possibleMemory.map((value,i)=>{
             return <div key={i} className={styles.CheckedInput}>
-                <input onChange={handleChange} checked={value===checked} type="radio" name="memoryRadio" id={value} value={value}/>
-                <label htmlFor={value}>{value==='1024'?<>1TB</>:<>{value}GB</>}</label>
+                <input onChange={handleChange}  type="radio" name="memoryRadio" id={value} value={value}/>
+                <label className={value===checked?styles.checked:styles.default} htmlFor={value}>{value==='1024'?<>1TB</>:<>{value}GB</>}</label>
             </div>
         })
     }

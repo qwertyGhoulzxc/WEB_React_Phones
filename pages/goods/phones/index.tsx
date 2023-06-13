@@ -3,6 +3,7 @@ import {GetServerSideProps,NextPage} from "next";
 import { phoneService } from "../../../app/sevices/PhoneService";
 import { wrapper } from "@/app/redux/store";
 import { phonesDataActions } from "@/app/redux/reducers/phones.slice";
+import { getMe } from "@/app/redux/reducers/requests";
 
 const page: NextPage = () => {
   return <PhonesCatalog />;
@@ -14,6 +15,7 @@ const page: NextPage = () => {
        
           const {query,res} = ctx
           res.setHeader('Cache-Control','s-maxage=20,stale-while-revalidate=60')
+          await getMe(ctx, store)
                 const page = Number(query.page)||1
                 const phonesData = await phoneService.getPhones(12,page,"true");
                 store.dispatch(phonesDataActions.setData(phonesData))

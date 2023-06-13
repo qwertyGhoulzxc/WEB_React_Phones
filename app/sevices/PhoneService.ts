@@ -53,7 +53,16 @@ export const phoneService = {
       }
     })
     return data
-  }
+  },
+
+  async getUniqueModels(){
+    const {data} = await axios.get('/get/phones',{
+      params:{
+        short:'models'
+      }
+    })
+    return data
+  },
 };
 
 

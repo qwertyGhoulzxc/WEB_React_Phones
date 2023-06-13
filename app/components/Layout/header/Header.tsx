@@ -1,7 +1,7 @@
 import { FC, useState } from 'react'
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {CgClose} from 'react-icons/cg'
-import {HiOutlineShoppingBag} from 'react-icons/hi'
+import {MdOutlineShoppingBag} from 'react-icons/md'
 import styles from './header.module.scss'
 import widthStyle from '../Layout.module.scss'
 import InputSearch from './inputSearch/InputSearch'
@@ -44,7 +44,7 @@ const Header: FC = () => {
             <li>СМАРТФОНЫ И УСТРОЙСТВА</li>
             <li>ЧЕХЛЫ И АКСЕССУАРЫ</li>
           </ul>
-          <div className={styles.shopBag}><HiOutlineShoppingBag/><p>Корзина</p></div>
+          <div className={styles.shopBag}><MdOutlineShoppingBag/><p>Корзина</p></div>
         </nav>
         </div>
     </header>

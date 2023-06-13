@@ -22,11 +22,11 @@ const handleClick =():void=>{
 }
 
   return <div className={styles.TechnicsContainer}>
-    <div onClick={handleClick} style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+    <div onClick={handleClick} style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'63px'}}>
     <p>Технические характеристики</p>
     {isOpened?<BsArrowUpCircle/>:<BsArrowDownCircle/>}
     </div>
-    <div>
+    <div style={isOpened?{display:'block'}:{display:'none'}}>
         <EquipmentPhone equipment={Phone.equipment}/>
         <Display display={Phone.display}/>
         <Cpu cpu={Phone.cpu}/>

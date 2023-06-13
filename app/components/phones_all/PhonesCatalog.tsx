@@ -21,7 +21,7 @@ const PhonesCatalog: FC = () => {
   return <Layout title='Iphones'>
     <button onClick={handleClick}>query</button>
     <HeaderPart/>
-    <div className={styles.pageContainer}>
+    <div  className={styles.pageContainer}>
     <GoodsList/>
     <FilterWindow/>
     </div>

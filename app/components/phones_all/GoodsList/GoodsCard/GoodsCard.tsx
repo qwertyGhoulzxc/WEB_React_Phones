@@ -2,6 +2,7 @@ import { FC, PropsWithChildren } from 'react'
 import styles from './GoodsCard.module.scss'
 import {BsArrowRightCircle} from 'react-icons/bs'
 import { TShortPhone } from '@/app/sevices/types.phoneService/TPhone'
+import { useRouter } from 'next/router'
 
 interface Props{
   phone:TShortPhone
@@ -9,7 +10,9 @@ interface Props{
 
 const GoodsCard: FC<Props> = ({phone}) => {
 
-  return <div className={styles.card}>
+  const {push,pathname} = useRouter()
+
+  return <div onClick={()=>push(`${pathname}/phone?page=${phone.id}`)} className={styles.card}>
     
     <div>
     <img src={phone.color.img[0]} alt="" />

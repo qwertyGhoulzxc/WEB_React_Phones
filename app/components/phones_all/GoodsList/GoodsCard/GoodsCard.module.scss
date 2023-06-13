@@ -2,6 +2,9 @@
 .card{
     width: 306px;
     height: 440px;
+    &:hover{
+        cursor: pointer;
+    }
     div{
         padding: 30px 68px;
     img{
