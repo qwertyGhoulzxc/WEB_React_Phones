@@ -4,6 +4,8 @@ import {useActions} from '@/app/hooks/useActions';
 import Layout from '../Layout/Layout';
 import Bestsellers from "@/app/components/HomePage/bestsellers/Bestsellers";
 import NewDevices from "@/app/components/HomePage/NewDevices/NewDevices";
+import BigBanner from "@/app/components/HomePage/BigBanner/BigBanner";
+import AppleTechnic from "@/app/components/HomePage/AppleTechnic/AppleTechnic";
 
 const HomePage: FC = () => {
 
@@ -16,6 +18,8 @@ const HomePage: FC = () => {
             <Banners/>
             <Bestsellers/>
             <NewDevices/>
+            <BigBanner/>
+            <AppleTechnic/>
         </Layout>
     );
 };

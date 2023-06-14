@@ -29,6 +29,11 @@
     display: flex;
     justify-content: space-between;
 
+    .arrow {
+      font-size: 32px;
+      color: $grayCl;
+    }
+
     svg {
       font-size: 37px;
       color: $darkBlueBg;

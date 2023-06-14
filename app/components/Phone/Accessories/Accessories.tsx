@@ -17,7 +17,7 @@ const Accessories: FC = () => {
         <div className={styles.raw}>
             {cases.map((value, i) => {
                 if (i < 2)
-                    return <AccessorCard key={i} CasE={value}/>
+                    return <AccessorCard isArrow={false} key={i} CasE={value}/>
             })}
 
             <Banner/>
