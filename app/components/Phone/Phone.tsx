@@ -12,8 +12,10 @@ const Phone: FC = () => {
 
   return <Layout title={phone.model}>
   <HeaderPart/>
+  <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
   <ShortTechnics/>
-  {/* <Accessories/> */}
+  <Accessories/>
+  </div>
   <Technics/>
   {/* <Wached/> */}
   </Layout>

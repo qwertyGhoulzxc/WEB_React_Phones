@@ -17,8 +17,8 @@ const ColorInput: FC<IColorInput> = ({color,defaultColor}) => {
     {
         color.map((value,i)=>{
             return <div key={i} className={styles.CheckedInput}>
-                <input onChange={handleChange}  defaultChecked={value===checked} type="radio" name="colorRadio" id={value} value={value}/>
-                <label htmlFor={value}><div style={{background:value}}></div></label>
+                <input onChange={handleChange}   type="radio" name="colorRadio" id={value} value={value}/>
+                <label className={value===checked?styles.checked:styles.default} htmlFor={value}><div style={{background:value}}></div></label>
             </div>
         })
     }

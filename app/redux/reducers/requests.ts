@@ -1,9 +1,9 @@
-import AuthService from "../../sevices/AuthService";
+import AuthService from "../../services/AuthService";
 import {UserInfoActions} from "./user.slice";
-import {IUser} from "../../sevices/types.authService/IUser";
+import {IUser} from "../../services/types.authService/IUser";
 import {AppDispatch} from "../store";
 import axios from "axios";
-import {AuthResponse} from "../../sevices/types.authService/typesAuthResponse";
+import {AuthResponse} from "../../services/types.authService/typesAuthResponse";
 import {API_URL} from "../../http";
 import Cookies from 'js-cookie'
 import {LoadingActions} from "./Loading.slice";
@@ -214,8 +214,20 @@ export const reloadReduxData = (id: any) => async (dispatch: AppDispatch) => {
 
 
 export const getMe = async (ctx: GetServerSidePropsContext<ParsedUrlQuery, string | false | object | undefined>, store: ToolkitStore) => {
-    const {id, refreshToken} = parseCookies(ctx)
-    const {data} = await axios.post(`${API_URL}reloadataredux`, {id})
-    store.dispatch(UserInfoActions.setUserData(data.user))
-    store.dispatch(UserInfoActions.setAuth(true))
+    try {
+        const state = store.getState()
+        const isAuth = state.UserInfoReducer.isAuth
+        if (!isAuth) {
+            const {id, refreshToken} = parseCookies(ctx)
+            const {data} = await axios.post(`${API_URL}reloadataredux`, {id})
+            store.dispatch(UserInfoActions.setUserData(data.user))
+            store.dispatch(UserInfoActions.setAuth(true))
+        }
+    } catch (err) {
+        console.log(err)
+    }
+
 }
+
+
+//получать поле isAuth и если оно ===true тогда мы не делаем запрос
