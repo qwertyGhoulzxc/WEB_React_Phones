@@ -6,12 +6,15 @@ import PriceInput from "./inputs/PriceInput";
 import {useAppSelector} from "@/app/hooks/redux";
 import {phoneService} from "@/app/services/PhoneService";
 import {useActions} from "@/app/hooks/useActions";
+import {useRouter} from "next/router";
 
 const FilterWindow: FC = () => {
 
     const {maxPrice, minPrice, uniqueMemory, uniqueColorsObj} = useAppSelector(state => state.phonesDataReducer)
     const {checkedColors, checkedMemory} = useAppSelector(state => state.BtnStateReducer)
     const {setCheckedColors, setCheckedMemory, setData} = useActions()
+
+    const {query} = useRouter()
 
     const priceObj = {
         minPrice: minPrice,
@@ -68,6 +71,13 @@ const FilterWindow: FC = () => {
         setData(data)
     }
 
+
+    const handleReset = async () => {
+        console.log(query.page)
+        const data = await phoneService.getResetPhones()
+        setData(data)
+    }
+
     return (
         <div className={styles.container}>
             <h2 style={{marginBottom: "26px"}}>
@@ -91,7 +101,7 @@ const FilterWindow: FC = () => {
             </div>
             <h2 style={{marginTop: "43px"}}>Цвет корпуса</h2>
             <div className={styles.inputBlock}>
-                {uniqueColorsObj.map((i, ii) => {
+                {uniqueColorsObj?.map((i, ii) => {
                     return (
                         <CheckBoxInputColors
                             // remove={handleRemoveCheckedColor}
@@ -106,7 +116,7 @@ const FilterWindow: FC = () => {
             <button style={{margin: "25px 0 13px 0"}} onClick={handleTest}>
                 ПРИМЕНИТЬ
             </button>
-            <button>СБРОСИТЬ ФИЛЬТР</button>
+            <button onClick={handleReset}>СБРОСИТЬ ФИЛЬТР</button>
         </div>
     );
 };

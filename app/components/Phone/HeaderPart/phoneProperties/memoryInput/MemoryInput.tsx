@@ -1,16 +1,22 @@
 import {Memory} from '@/app/services/types.phoneService/TPhone'
 import {FC, useState} from 'react'
 import styles from './MemoryInput.module.scss'
+import {phoneService} from "@/app/services/PhoneService";
+import {useAppSelector} from "@/app/hooks/redux";
 
 interface Props {
-    memory: Memory
+    memory: Memory;
+    changed: (value: (((prevState: string) => string) | string)) => void;
 }
 
 
-const MemoryInput: FC<Props> = ({memory}) => {
+const MemoryInput: FC<Props> = ({memory, changed,}) => {
     const [checked, setChecked] = useState<string>(memory.memory[0])
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const {model, color} = useAppSelector(state => state.phoneSliceReducer)
+    const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(e.target.value)
+        const id = await phoneService.getPhoneByMAndCl(color.colorEn, String(e.target.value), model)
+        changed(id)
         console.log(e.target.value);
 
     }

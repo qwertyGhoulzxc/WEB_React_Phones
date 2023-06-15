@@ -5,6 +5,7 @@ import GoodsList from './GoodsList/GoodsList'
 import FilterWindow from './FilterWindow/FilterWindow'
 import styles from './PhonesCatatlog.module.scss'
 import {useRouter} from 'next/router'
+import Pagination from "@/app/components/phones_all/pagination/Pgagination";
 
 
 const PhonesCatalog: FC = () => {
@@ -24,6 +25,7 @@ const PhonesCatalog: FC = () => {
             <GoodsList/>
             <FilterWindow/>
         </div>
+        <Pagination/>
     </Layout>
 }
 //добавить раззмерные блоки

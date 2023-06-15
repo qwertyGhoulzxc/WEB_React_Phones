@@ -4,6 +4,10 @@
   width: 260px;
   height: 400px;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   .name {
     font-style: normal;
     font-weight: 600;

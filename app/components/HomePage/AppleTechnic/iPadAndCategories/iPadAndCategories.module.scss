@@ -1,4 +1,8 @@
 .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   h2 {
     font-style: normal;
     font-weight: 700;

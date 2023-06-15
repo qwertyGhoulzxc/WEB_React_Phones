@@ -8,6 +8,11 @@ const IPadCard: FC = () => {
         <div className={styles.image}>
             <Image src={IPadImg} alt={'iPad'} width={248} height={307}/>
         </div>
+        <div className={styles.text}>
+            <p>Планшет</p>
+            <h2>Apple<br/> iPad Pro 4</h2>
+        </div>
+
     </div>
 }
 

@@ -1,67 +1,93 @@
 @import '../../../../styles//variables';
 
 
-.headerCl{
-background-color: $darkBlueBg;
-a{
-    &::hover{
-        cursor: pointer;
+.headerCl {
+  background-color: $darkBlueBg;
+
+  a {
+    &::hover {
+      cursor: pointer;
     }
-}
+  }
 }
 
-.firstLine{
+.firstLine {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    color: $whiteCl;
+    font-weight: 600;
+    font-size: 40px;
+  }
+
+  button {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    h1{
-        color: $whiteCl;
-        font-weight: 600;
-        font-size: 40px;
+    width: 180px;
+    height: 55px;
+    background-color: $lightBlueCl;
+
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 25px;
+
+    .icon {
+
+      font-size: 25px;
     }
-    button{
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        width: 180px;
-        height: 55px;
-        background-color: $lightBlueCl;
-        
-        border: none;
-        border-radius: 5px;
-        font-weight: 700;
-        font-size: 25px;
-        .icon{
-            
-            font-size: 25px;
-        }
-    }
-    .profile{
-        color: $whiteCl;
-    }
+  }
+
+  .profile {
+    color: $whiteCl;
+  }
 }
 
-.secondLine{
+.secondLine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  ul {
+    padding-inline-start: 0;
+    width: 966px;
+    display: flex;
+    justify-content: space-between;
+    color: $whiteCl;
+
+    li {
+      font-weight: 600;
+      font-size: 24px;
+      list-style: none;
+    }
+  }
+
+  .shopBag {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    ul{
-        padding-inline-start: 0;
-        width: 966px;
-        display: flex;
-        justify-content: space-between;
-        color: $whiteCl;
-        li{
-            font-weight: 600;
-            font-size: 24px;
-            list-style: none;
-        }
+    color: $goldCl;
+    font-weight: 400;
+    font-size: 20px;
+
+    div {
+      display: flex;
+      position: relative;
+
+      p {
+        color: white;
+        position: absolute;
+        top: 2px;
+        left: 0;
+      }
     }
-    .shopBag{
-        display: flex;
-        align-items: center;
-        color: $goldCl;
-        font-weight: 400;
-        font-size: 20px;
+
+    svg {
+      font-size: 30px;
+      font-weight: 300;
+      
     }
+  }
 }

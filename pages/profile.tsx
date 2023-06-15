@@ -13,7 +13,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 
     const state = store.getState()
     const isAuth = state.UserInfoReducer.isAuth
-    if (!isAuth) {
+    if (isAuth) {
         return {
             props: {}
         }
