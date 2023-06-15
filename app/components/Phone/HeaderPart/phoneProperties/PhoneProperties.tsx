@@ -1,19 +1,27 @@
-import { useAppSelector } from '@/app/hooks/redux'
-import { FC } from 'react'
+import {useAppSelector} from '@/app/hooks/redux'
+import {FC, useEffect, useState} from 'react'
 import styles from './PhoneProperties.module.scss'
 import MemoryInput from './memoryInput/MemoryInput'
 import ColorInput from './colorInput/ColorInput'
+import {useRouter} from "next/router";
 
 const PhoneProperties: FC = () => {
-    
-    const {possibleColors,memory,model,color,company} = useAppSelector(state=>state.phoneSliceReducer)
-  return <div className={styles.container}>
-    <h2>{company} {model} ({color.colorEn}/{memory.memory[0]==='1024'?<>1TB</>:<>{memory.memory[0]}GB</>})</h2>
-    <p>Объем памяти</p>
-    <MemoryInput memory={memory}/>
-    <p>Цвет</p>
-    <ColorInput defaultColor={color.colorEn} color={possibleColors}/>
-  </div>
+    const {push} = useRouter()
+
+    const Phone = useAppSelector(state => state.phoneSliceReducer)
+    const [changed, setChanged] = useState<string>(String(Phone.id))
+    useEffect(() => {
+        push(`/goods/phones/phone?page=${changed}`)
+    }, [changed])
+
+    return <div className={styles.container}>
+        <h2>{Phone.company} {Phone.model} ({Phone.color.colorEn}/{Phone.memory.memory[0] === '1024' ? <>1TB</> : <>{Phone.memory.memory[0]}GB</>})</h2>
+        <p>Объем памяти</p>
+        <MemoryInput phone={Phone} changed={setChanged} memory={Phone.memory}/>
+        <p>Цвет</p>
+        <ColorInput changed={setChanged} defaultColor={Phone.color.colorEn} color={Phone.possibleColors}/>
+
+    </div>
 }
 
 export default PhoneProperties

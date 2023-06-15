@@ -14,7 +14,7 @@ export const phoneService = {
     async getPhones(
         store: Store,
         limit: number = 12,
-        page: number = 2,
+        page: number = 1,
         short: string = "false"
     ) {
         try {
@@ -51,11 +51,12 @@ export const phoneService = {
     async getPhoneById(store: Store, id: string) {
         try {
             const {data} = await axios.get('/get/phones', {
+
                 params: {
                     id
                 }
             })
-            store.dispatch(phoneSliceActions.setOnePhone(...data.phones))
+            store.dispatch(phoneSliceActions.setOnePhone(data.phones[0]))
         } catch (e) {
             console.log(e)
         }
@@ -89,7 +90,43 @@ export const phoneService = {
         } catch (e) {
             console.log(e)
         }
-    }
+    },
+
+    async getPhoneByMAndCl(color: string, memory: string, search: string, short: string = 'true', limit: string = '1') {
+        try {
+            const {data} = await axios.get('/get/phones', {
+                params: {
+                    color,
+                    memory,
+                    search,
+                    short,
+                    limit,
+                }
+            })
+            return data.phones[0].id
+        } catch (e) {
+            console.log(e)
+        }
+    },
+    async getResetPhones(
+        page: number = 1,
+        limit: number = 12,
+        short: string = "true"
+    ) {
+        try {
+            const {data} = await axios.get<TPhoneShortResponse>("/get/phones", {
+                params: {
+                    page,
+                    limit,
+                    short,
+                },
+            });
+            console.log(data)
+            return data
+        } catch (e) {
+            console.log(e);
+        }
+    },
 };
 
 

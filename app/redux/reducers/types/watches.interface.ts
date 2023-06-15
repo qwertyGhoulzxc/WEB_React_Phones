@@ -1,4 +1,4 @@
-interface IWatch {
+export interface IWatch {
     company: string;
     model: string;
     img: string[];

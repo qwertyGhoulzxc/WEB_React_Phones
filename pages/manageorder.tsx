@@ -1,13 +1,10 @@
-import ShopingBasket from '@/app/components/shopingBasket/ShopingBasket'
-import {FC} from 'react'
-import {GetServerSideProps} from "next";
+import {GetServerSideProps, NextPage} from 'next'
+import ManageOrders from "@/app/components/manageOrder/manageOrder";
 import {wrapper} from "@/app/redux/store";
 import {getMe} from "@/app/redux/reducers/requests";
 
-//сделать страницу доступной для авторизованных юсеров
-
-const basket: FC = () => {
-    return <ShopingBasket/>
+const ManageOrder: NextPage = () => {
+    return <ManageOrders/>
 }
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(store => async (ctx) => {
@@ -28,5 +25,4 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
         }
     }
 })
-
-export default basket
+export default ManageOrder

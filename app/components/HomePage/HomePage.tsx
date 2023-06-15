@@ -6,6 +6,7 @@ import Bestsellers from "@/app/components/HomePage/bestsellers/Bestsellers";
 import NewDevices from "@/app/components/HomePage/NewDevices/NewDevices";
 import BigBanner from "@/app/components/HomePage/BigBanner/BigBanner";
 import AppleTechnic from "@/app/components/HomePage/AppleTechnic/AppleTechnic";
+import Accessories from "@/app/components/HomePage/Accessories/Accessories";
 
 const HomePage: FC = () => {
 
@@ -20,6 +21,7 @@ const HomePage: FC = () => {
             <NewDevices/>
             <BigBanner/>
             <AppleTechnic/>
+            <Accessories/>
         </Layout>
     );
 };
