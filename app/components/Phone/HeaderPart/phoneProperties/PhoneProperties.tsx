@@ -17,7 +17,7 @@ const PhoneProperties: FC = () => {
     return <div className={styles.container}>
         <h2>{Phone.company} {Phone.model} ({Phone.color.colorEn}/{Phone.memory.memory[0] === '1024' ? <>1TB</> : <>{Phone.memory.memory[0]}GB</>})</h2>
         <p>Объем памяти</p>
-        <MemoryInput phone={Phone} changed={setChanged} memory={Phone.memory}/>
+        <MemoryInput changed={setChanged} memory={Phone.memory}/>
         <p>Цвет</p>
         <ColorInput changed={setChanged} defaultColor={Phone.color.colorEn} color={Phone.possibleColors}/>
 
