@@ -10,11 +10,11 @@ import {useRouter} from "next/router";
 
 const FilterWindow: FC = () => {
 
-    const {maxPrice, minPrice, uniqueMemory, uniqueColorsObj} = useAppSelector(state => state.phonesDataReducer)
-    const {checkedColors, checkedMemory} = useAppSelector(state => state.BtnStateReducer)
-    const {setCheckedColors, setCheckedMemory, setData} = useActions()
+    const {maxPrice, minPrice, uniqueMemory, uniqueColorsObj,} = useAppSelector(state => state.phonesDataReducer)
+    const {checkedColors, checkedMemory, LPRICERedux, HPRICERedux} = useAppSelector(state => state.BtnStateReducer)
+    const {setCheckedColors, setCheckedMemory, setData, setIsFiltered} = useActions()
 
-    const {query} = useRouter()
+    const {query, push} = useRouter()
 
     const priceObj = {
         minPrice: minPrice,
@@ -23,17 +23,19 @@ const FilterWindow: FC = () => {
 
     const [colors, setColors] = useState<string[]>([]);
     const [memory, setMemory] = useState<string[]>([]);
-    const [lPrice, setLPrice] = useState<number>(0);
-    const [hPrice, setHPrice] = useState<number>(priceObj.maxPrice || 99999);
+    const [lPrice, setLPrice] = useState<number | string>('');
+    const [hPrice, setHPrice] = useState<number | string>('');
+    const [reset, setReset] = useState<boolean>(false)
 
-    const handleCheckedMemory = (): void => {
+
+    const handleResetMemoryChecked = (): void => {
         const nodeList: NodeListOf<HTMLElement> =
             document.getElementsByName("sortMemory");
         const values: NodeListOf<HTMLInputElement> =
             nodeList as NodeListOf<HTMLInputElement>;
         for (let i = 0; i < values.length; i++) {
-            if (values[i].checked && !memory.includes(values[i].id))
-                setMemory((prev) => [...prev, values[i].id]);
+            if (values[i].checked)
+                values[i].checked = false
         }
         // console.log(memory);
     };
@@ -42,19 +44,20 @@ const FilterWindow: FC = () => {
         setMemory(sortedArr);
     };
 
+    const defaultColorsResponse = uniqueColorsObj.map(i => i.colorEn)
+    const defaultMemoryResponse = uniqueMemory.toString()
     const GetParamsLink = () => {
-        const defaultColorsResponse = uniqueColorsObj.map(i => i.colorEn)
-        const defaultMemoryResponse = uniqueMemory.toString()
+
         // handleCheckedColors();
-        console.log(colors.length);
+        // console.log(colors.length);
 
-        if (checkedColors.length === 0) {
-            setCheckedColors(defaultColorsResponse)
-        }
-
-        if (checkedMemory.length === 0) {
-            setCheckedMemory(defaultMemoryResponse.split(','))
-        }
+        // if (checkedColors.length === 0) {
+        //     setCheckedColors(defaultColorsResponse)
+        // }
+        //
+        // if (checkedMemory.length === 0) {
+        //     setCheckedMemory(defaultMemoryResponse.split(','))
+        // }
         // console.log(checkedColors);
         // console.log(checkedMemory);
         //убрать хардкод цен
@@ -67,16 +70,32 @@ const FilterWindow: FC = () => {
     };
     const handleTest = async () => {
         const params: any = GetParamsLink()
-        const data = await phoneService.getSortedPhones(params[0], params[1], params[2], params[3] === 0 ? maxPrice : params[3])
+        const data = await phoneService.getSortedPhones(params[0], params[1], params[2] === '' ? 0 : params[2], params[3] === 0 || params[3] === '' ? maxPrice : params[3])
         setData(data)
+        setIsFiltered(true)
+        push(`/goods/phones?page=1&color=${checkedColors.join(',')}&memory=${checkedMemory.join(',')}&lprice=${LPRICERedux}&hprice=${HPRICERedux}`)
+
     }
 
 
     const handleReset = async () => {
         console.log(query.page)
         const data = await phoneService.getResetPhones()
+        handleResetMemoryChecked()
+        setCheckedMemory([])
+        setCheckedColors([])
+        setLPrice('')
+        setHPrice('')
+
         setData(data)
+        setIsFiltered(false)
+
+
+        setReset(prevState => !prevState)
+        push(`/goods/phones?page=1&color=&memory=&lprice=${minPrice}&hprice=${maxPrice}`)
+
     }
+
 
     return (
         <div className={styles.container}>
@@ -84,9 +103,12 @@ const FilterWindow: FC = () => {
                 Цена <u>BYN</u>
             </h2>
             <PriceInput
+                reset={reset}
                 lPriceValue={setLPrice}
                 hPriceValue={setHPrice}
                 priceObj={priceObj}
+                lPriceData={lPrice}
+                hPriceData={hPrice}
             />
             <h2 style={{marginTop: "37px"}}>Память</h2>
             <div className={styles.inputBlock}>
@@ -95,6 +117,7 @@ const FilterWindow: FC = () => {
                         <CheckBoxInputMemory
                             key={ii}
                             memory={i}
+                            reset={reset}
                         />
                     );
                 })}
@@ -108,6 +131,7 @@ const FilterWindow: FC = () => {
                             key={ii}
                             colorEn={i.colorEn}
                             colorRu={i.colorRu}
+                            reset={reset}
                         />
                     );
                 })}

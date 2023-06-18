@@ -1,7 +1,6 @@
 import {FC} from 'react'
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {CgClose} from 'react-icons/cg'
-import {MdOutlineShoppingBag} from 'react-icons/md'
 import styles from './header.module.scss'
 import widthStyle from '../Layout.module.scss'
 import InputSearch from './inputSearch/InputSearch'
@@ -9,11 +8,13 @@ import {useRouter} from 'next/router'
 import {useActions} from '@/app/hooks/useActions'
 import {useAppSelector} from '@/app/hooks/redux'
 import Link from 'next/link'
+import Image from "next/image";
 
 
 const Header: FC = () => {
     const {push, asPath} = useRouter()
     const {catalogBtn} = useAppSelector(state => state.BtnStateReducer)
+
     const {setCatalogBtnState} = useActions()
     const {isAuth, user} = useAppSelector(state => state.UserInfoReducer)
 
@@ -47,9 +48,14 @@ const Header: FC = () => {
                         <li>СМАРТФОНЫ И УСТРОЙСТВА</li>
                         <li>ЧЕХЛЫ И АКСЕССУАРЫ</li>
                     </ul>
-                    <div className={styles.shopBag}>
-                        <div><MdOutlineShoppingBag/><p>5</p></div>
-                        <p>Корзина</p></div>
+                    <Link href={'/basket'}>
+                        <div className={styles.shopBag}>
+                            <div>
+                                <Image src={'/shoppingBag.png'} alt={'basket'} height={37} style={{marginRight: '5px'}}
+                                       width={27}/>
+                                <p>{user?.shoppingBasket?.length !== 0 && user?.shoppingBasket?.length}</p></div>
+                            <p>Корзина</p></div>
+                    </Link>
                 </nav>
             </div>
         </header>

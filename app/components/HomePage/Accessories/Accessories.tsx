@@ -8,7 +8,7 @@ import AccessorCard from "@/app/components/Phone/Accessories/AccessorCard/Access
 const Accessories: FC = () => {
     const {cases} = useAppSelector(state => state.CasesDataReducer)
 
-    return <div>
+    return <div className={styles.mabo}>
         <div className={styles.accessoriesHeader}>
             <h2>Чехлы и аксессуары</h2>
             <BsArrowRightCircle/>
