@@ -1,9 +1,12 @@
 import {TPhoneShortResponse,} from "./types.phoneService/TPhoneResponse";
 import axios, {AxiosResponse} from "axios";
-import {Store} from "redux";
 import {phoneSliceActions} from "@/app/redux/reducers/phone.slice";
 import {phonesDataActions} from "@/app/redux/reducers/phones.slice";
 import {bestsellersActions} from "@/app/redux/reducers/bestsellers.slice";
+import {ToolkitStore} from "@reduxjs/toolkit/src/configureStore";
+import {ParsedUrlQuery} from "querystring";
+import {GetServerSidePropsContext} from "next";
+import {parseCookies} from "nookies";
 
 //заменить на proccess.env
 const API_URL = process.env.API_URL;
@@ -12,17 +15,26 @@ axios.defaults.baseURL = API_URL;
 
 export const phoneService = {
     async getPhones(
-        store: Store,
+        query: ParsedUrlQuery,
+        store: ToolkitStore,
         limit: number = 12,
         page: number = 1,
         short: string = "false"
     ) {
         try {
+            const color = query.color
+            const lprice = query.lprice
+            const hprice = query.hprice
+            const memory = query.memory
             const {data} = await axios.get<TPhoneShortResponse>("/get/phones", {
                 params: {
                     page,
                     limit,
                     short,
+                    color,
+                    memory,
+                    hprice,
+                    lprice
                 },
             });
             store.dispatch(phonesDataActions.setData(data))
@@ -30,7 +42,7 @@ export const phoneService = {
             console.log(e);
         }
     },
-    async getSortedPhones(color: string, memory: string, lprice: number, hprice: number, short: string = "true") {
+    async getSortedPhones(color: string, memory: string, lprice: number, hprice: number, page: number = 1, short: string = "true") {
         try {
             const {data} = await axios.get<AxiosResponse<any, TPhoneShortResponse>>('/get/phones', {
                 params: {
@@ -39,6 +51,7 @@ export const phoneService = {
                     color,
                     memory,
                     short,
+                    page
                 }
             })
             return data
@@ -48,7 +61,7 @@ export const phoneService = {
         }
 
     },
-    async getPhoneById(store: Store, id: string) {
+    async getPhoneById(store: ToolkitStore, id: string) {
         try {
             const {data} = await axios.get('/get/phones', {
 
@@ -78,7 +91,7 @@ export const phoneService = {
 
     },
 
-    async getBestsellers(store: Store, limit: number = 3) {
+    async getBestsellers(store: ToolkitStore, limit: number = 3) {
         try {
             const {data} = await axios.get('/get/phones', {
                 params: {
@@ -127,8 +140,27 @@ export const phoneService = {
             console.log(e);
         }
     },
+
+    async search(search: string, limit: string = '5', short: string = 'true') {
+        const {data} = await axios.get('/get/phones', {
+            params: {
+                limit,
+                search,
+                short
+            }
+        })
+        return data
+    },
+
+    async setItemWatched(ctx: GetServerSidePropsContext<ParsedUrlQuery, string | false | object | undefined>, goodId: number,) {
+        try {
+            const {id} = parseCookies(ctx)
+            await axios.post('/add/watched', {userId: id, goodId})
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
 };
 
 
-//страница page ===   [page]
-//посмотреть роутин по id

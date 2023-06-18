@@ -14,9 +14,12 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
     const {query, res, req} = ctx
     res.setHeader('Cache-Control', 's-maxage=20,stale-while-revalidate=60')
 
+    const state = store.getState()
+    const isFiltered = state.BtnStateReducer.isFiltered
     await getMe(ctx, store)
     const page = Number(query.page) || 1
-    await phoneService.getPhones(store, 12, page, "true");
+    await phoneService.getPhones(query, store, 12, page, "true");
+
 
     return {
         props: {}

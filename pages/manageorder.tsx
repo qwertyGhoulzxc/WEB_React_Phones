@@ -12,9 +12,17 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 
     const state = store.getState()
     const isAuth = state.UserInfoReducer.isAuth
+    const isActivated = state.UserInfoReducer.user.isActivated
     if (isAuth) {
         return {
             props: {}
+        }
+    } else if (!isActivated) {
+        return {
+            redirect: {
+                permanent: false,
+                destination: "/"
+            }
         }
     } else {
         return {

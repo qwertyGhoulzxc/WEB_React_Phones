@@ -6,6 +6,7 @@ import {useRouter} from "next/router";
 
 const Pagination: FC = () => {
     const {page, limit, total,} = useAppSelector(state => state.phonesDataReducer)
+    const {checkedColors, checkedMemory, HPRICERedux, LPRICERedux} = useAppSelector(state => state.BtnStateReducer)
     const totalPages = Math.ceil(total / limit)
     const pagesUi = []
     for (let i = 1; i <= totalPages; i++) {
@@ -14,16 +15,16 @@ const Pagination: FC = () => {
 
     const {push} = useRouter()
     const handleLeftArrow = () => {
-        push(`/goods/phones?page=${page - 1}`)
+        push(`/goods/phones?page=${page - 1}&color=${checkedColors.join(',')}&memory=${checkedMemory.join(',')}&lprice=${LPRICERedux}&hprice=${HPRICERedux}`)
     }
 
     const handleRightArrow = () => {
-        push(`/goods/phones?page=${page + 1}`)
+        push(`/goods/phones?page=${page + 1}&color=${checkedColors.join(',')}&memory=${checkedMemory.join(',')}&lprice=${LPRICERedux}&hprice=${HPRICERedux}`)
     }
 
     const handleRedirect = (pageVal) => {
-        if (page !== page)
-            push(`/goods/phones?page=${pageVal}`)
+        if (pageVal !== page)
+            push(`/goods/phones?page=${pageVal}&color=${checkedColors.join(',')}&memory=${checkedMemory.join(',')}&lprice=${LPRICERedux}&hprice=${HPRICERedux}`)
     }
 
 

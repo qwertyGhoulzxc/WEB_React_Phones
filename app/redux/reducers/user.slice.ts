@@ -13,7 +13,9 @@ const initialState: UserSliceInterface = {
         name: '',
         avatar: '',
         purchased: [],
-        status: 'user'
+        status: 'user',
+        shoppingBasket: [],
+        watched: []
     },
     isAuth: false,
     LoginError: {
@@ -76,6 +78,7 @@ const userInfo = createSlice({
         setChangeProfileAvatar: (state, action: PayloadAction<boolean>) => {
             state.ChangeProfile.img = action.payload
         },
+        
     },
     extraReducers: {
         [HYDRATE]: (state, action) => {

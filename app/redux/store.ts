@@ -8,6 +8,8 @@ import {phoneSliceReducer} from './reducers/phone.slice'
 import {bestsellersReducer} from "@/app/redux/reducers/bestsellers.slice";
 import {CasesDataReducer} from "@/app/redux/reducers/cases.slise";
 import {WatchesDataReducer} from "@/app/redux/reducers/watches.slice";
+import {SearchDataReducer} from "@/app/redux/reducers/search.data.slice";
+import {ManageOrderSliceReducer} from "@/app/redux/reducers/manageOrder.slice";
 
 // const removeMutationResultFilter: Middleware<any> = (store) => (next) => (action) => {
 //     if (action.type === 'api/users/mutations/removeMutationResult') {
@@ -24,7 +26,9 @@ const rootReducer = combineReducers({
     phoneSliceReducer,
     bestsellersReducer,
     CasesDataReducer,
-    WatchesDataReducer
+    WatchesDataReducer,
+    SearchDataReducer,
+    ManageOrderSliceReducer
 });
 
 export function setupStore() {

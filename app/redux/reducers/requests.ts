@@ -229,5 +229,17 @@ export const getMe = async (ctx: GetServerSidePropsContext<ParsedUrlQuery, strin
 
 }
 
+export const getMeAlways = async (ctx: GetServerSidePropsContext<ParsedUrlQuery, string | false | object | undefined>, store: ToolkitStore) => {
+    try {
+        const {id} = parseCookies(ctx)
+        const {data} = await axios.post(`${API_URL}reloadataredux`, {id})
+        store.dispatch(UserInfoActions.setUserData(data.user))
+        store.dispatch(UserInfoActions.setAuth(true))
+    } catch (err) {
+        console.log(err)
+    }
+
+}
+
 
 //получать поле isAuth и если оно ===true тогда мы не делаем запрос
