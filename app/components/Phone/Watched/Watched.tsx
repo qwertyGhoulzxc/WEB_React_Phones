@@ -8,7 +8,7 @@ const Watched: FC = () => {
     return <div className={styles.watchedContainer}>
         <h2>Вы смотрели</h2>
         <div className={styles.watchedItems}>
-            {watched.map((value, i) => {
+            {watched?.map((value, i) => {
                 return <SmallGoodCard key={i} phone={value}/>
             })}
         </div>
