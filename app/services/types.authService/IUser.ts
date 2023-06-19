@@ -1,3 +1,5 @@
+import {TShortPhone} from "@/app/services/types.phoneService/TPhone";
+
 export interface IUser {
     email: string;
     id: string;
@@ -8,8 +10,8 @@ export interface IUser {
     purchased: [],
     avatar: string
     status: string;
-    shoppingBasket: [];
-    watched: []
+    shoppingBasket: TShortPhone[] | [];
+    watched: TShortPhone[] | []
 
 }
 

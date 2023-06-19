@@ -22,7 +22,7 @@ const Pagination: FC = () => {
         push(`/goods/phones?page=${page + 1}&color=${checkedColors.join(',')}&memory=${checkedMemory.join(',')}&lprice=${LPRICERedux}&hprice=${HPRICERedux}`)
     }
 
-    const handleRedirect = (pageVal) => {
+    const handleRedirect = (pageVal: string | number) => {
         if (pageVal !== page)
             push(`/goods/phones?page=${pageVal}&color=${checkedColors.join(',')}&memory=${checkedMemory.join(',')}&lprice=${LPRICERedux}&hprice=${HPRICERedux}`)
     }

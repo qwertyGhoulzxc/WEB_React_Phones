@@ -1,7 +1,7 @@
 import {FC} from 'react'
 
 import Layout from '../Layout/Layout'
-import BasketItem from './basketItem/BasketItem'
+import BasketItem from './BasketItem/BasketItem'
 import styles from './ShoppingBasket.module.scss'
 import {useAppSelector} from "@/app/hooks/redux";
 import TotalWindow from "@/app/components/shopingBasket/TotalWindow/TotalWindow";

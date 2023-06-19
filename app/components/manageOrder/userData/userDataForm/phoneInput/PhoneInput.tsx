@@ -1,7 +1,7 @@
 import PhoneInput from 'react-phone-input-2';
 import {Controller} from 'react-hook-form';
-import {PhoneInputByProps} from "@/app/components/Enter/form/form.interfaces";
 import {useAppSelector} from "@/app/hooks/redux";
+import {PhoneInputByProps} from "@/app/components/manageOrder/userData/userDataForm/userDataForm.interface";
 
 
 const PhoneInputField: React.FC<PhoneInputByProps> = ({name, control, ...phoneInputProps}) => {
