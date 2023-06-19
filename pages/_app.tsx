@@ -1,4 +1,5 @@
 import { store, wrapper } from "@/app/redux/store";
+import React from 'react'
 import { AppProps } from "next/app";
 import { Provider } from "react-redux";
 import '../styles/globals.scss'
