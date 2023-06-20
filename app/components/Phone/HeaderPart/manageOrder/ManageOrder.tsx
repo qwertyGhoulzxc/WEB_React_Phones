@@ -14,11 +14,11 @@ const ManageOrder: FC<Props> = ({price}) => {
     const {user} = useAppSelector(state => state.UserInfoReducer)
     const {id: phoneIId} = useAppSelector(state => state.phoneSliceReducer)
     const handleAddToBasket = async () => {
-        const data = await basketService.addItem(user.id, String(phoneIId))
+        const data = await basketService.addItem(user?.id, String(phoneIId))
         setUserData(data)
     }
     const handleDelete = async () => {
-        const data = await basketService.removeItem(user.id, String(phoneIId))
+        const data = await basketService.removeItem(user?.id, String(phoneIId))
         setUserData(data)
     }
     return <div className={styles.box}>
