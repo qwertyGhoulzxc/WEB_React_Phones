@@ -9,8 +9,8 @@
   "functions": {
     "api/**/*.js": {
       "runtime": "@vercel/node",
-      "memory": 1024, // Опционально: установите размер памяти
-      "timeout": 30 // Установите время ожидания в секундах
+      "memory": 1024, 
+      "timeout": 30 
     }
   },
   "routes": [
